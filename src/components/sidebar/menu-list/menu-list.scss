@@ -1,0 +1,39 @@
+.menu_list {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    .ant-menu-item {
+        height: 42px;
+        margin: 0 0 16px 0 !important;
+        padding: 0 16px !important;
+        display: flex;
+        align-items: center;
+        .anticon {
+            width: 16px;
+            height: 16px;
+            path {
+                fill: $primary-light-9;
+            }
+        }
+        .ant-menu-title-content {
+            height: 18px;
+            font-weight: 400;
+            font-size: 14px;
+            color: $character-light-title-85;
+            display: flex;
+            align-items: center;
+        }
+        &-selected {
+            box-shadow: inset -3px 0 0 0 $character-light-link;
+            background: $primary-light-1;
+            .anticon {
+                path {
+                    fill: $primary-light-5;
+                }
+            }
+            .ant-menu-title-content {
+                color: $primary-light-5;
+            }
+        }
+    }
+}

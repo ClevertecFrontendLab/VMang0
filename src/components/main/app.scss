@@ -1,0 +1,9 @@
+.app {
+    max-width: 1440px;
+    height: 100vh;
+    margin: 0 auto;
+    background: no-repeat center url('../../assets/image/main_page_light.png');
+    &__content {
+        background-color: inherit;
+    }
+}

@@ -1,0 +1,32 @@
+.exit_btn {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 40px;
+    box-shadow: inset 0 1px 0 0 $character-light-dividers;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    .ant-btn {
+        width: 100%;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        border: none;
+        svg {
+            path {
+                fill: $neutral-gray-13;
+            }
+        }
+        span {
+            padding: 2px 15px;
+            width: 74px;
+            height: 26px;
+            margin-left: 10px;
+            font-weight: 400;
+            font-size: 14px;
+            text-align: center;
+            color: $character-light-title-85;
+        }
+    }
+}

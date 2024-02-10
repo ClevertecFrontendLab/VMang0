@@ -1,10 +1,10 @@
 .sidebar_container {
     box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
+    position: relative;
     .ant-layout-sider {
         display: flex;
         flex-direction: column;
         height: 100%;
         background-color: $character-light-primary-inverse;
-        position: relative;
     }
 }

@@ -7,7 +7,7 @@ const App = () => {
     return (
         <Layout className='app'>
             <Sidebar />
-            <Layout>
+            <Layout className='app__layout'>
                 <Header>Header</Header>
                 <Content className='app__content'>Content</Content>
             </Layout>

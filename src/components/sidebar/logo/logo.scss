@@ -6,4 +6,21 @@
         height: 64px;
         padding: 18px;
     }
+   &__mobile {
+       margin-top: 0;
+       padding: 16px 17px;
+       img {
+           width: 72px;
+           height: 18px;
+           opacity: 1;
+           visibility: visible;
+           transition: opacity 0.3s ease;
+       }
+       &__collapsed {
+           img {
+               opacity: 0;
+               visibility: hidden;
+           }
+       }
+   }
 }

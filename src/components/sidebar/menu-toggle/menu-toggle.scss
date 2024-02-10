@@ -1,0 +1,22 @@
+.menu_toggle {
+    height: 66px;
+    width: 20px;
+    position: absolute;
+    right: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 0;
+    border: none;
+    clip-path: polygon(0 0, 100% 12%, 100% 88%, 0% 100%);
+    color: $neutral-gray-7;
+    box-shadow: 0 10px 8px 0 rgba(0, 0, 0, 0.15);
+    &:focus {
+        color: $neutral-gray-7;
+    }
+    &:focus-visible {
+        border: 1px solid $primary-light-5;
+    }
+    &:hover {
+        color: $primary-light-5;
+    }
+}

@@ -5,11 +5,10 @@ import Logo from './logo'
 import MenuList from './menu-list'
 import ExitBtn from '@components/sidebar/exit-btn/index.jsx';
 import SidebarContainer from '@components/sidebar/sidebar-container/index.jsx';
-import MenuToggle from '@components/sidebar/menu-toggle/menu-toggle.jsx';
+import MenuToggle from '@components/sidebar/menu-toggle';
 
 const Sidebar = () => {
     const [collapsed, setCollapsed] = useState(false);
-
     return (
         <SidebarContainer>
             <Sider

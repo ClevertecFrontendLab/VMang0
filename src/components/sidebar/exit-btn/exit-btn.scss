@@ -28,5 +28,15 @@
             text-align: center;
             color: $character-light-title-85;
         }
+        &:focus-visible {
+            border: 1px solid #1d39c4;
+        }
+    }
+    &_collapsed {
+        .ant-btn {
+            span {
+                display: none;
+            }
+        }
     }
 }

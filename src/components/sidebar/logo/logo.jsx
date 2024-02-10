@@ -4,7 +4,7 @@ import logo_collapsed from './logo_collapsed.png';
 
 const Logo = ({ collapsed }) => {
     return (
-        <div className='logo'>
+        <div className={`logo ${collapsed ? 'logo__collapsed' : ''}`}>
             <img src={collapsed ? logo_collapsed : logo} alt="cleverFIT logotype"/>
         </div>
     );

@@ -9,9 +9,11 @@
    &__mobile {
        margin-top: 0;
        padding: 16px 17px;
+       max-height: 50px;
        img {
            width: 72px;
            height: 18px;
+           vertical-align: baseline;
            opacity: 1;
            visibility: visible;
            transition: opacity 0.3s ease;

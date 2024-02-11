@@ -4,6 +4,18 @@
     font-weight: normal;
     font-style: normal;
 }
+@font-face {
+    font-family: 'Inter Bold';
+    src: url('../fonts/Inter-Bold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Inter Medium';
+    src: url('../fonts/Inter-Medium.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
 * {
     font-family: "Inter", sans-serif;
     margin: 0;
@@ -16,6 +28,14 @@ dl {
     list-style-type: none;
     margin: 0;
     padding: 0;
+}
+h1 {
+    font-family: 'Inter Bold', sans-serif;
+    font-weight: 700;
+}
+h3, h4 {
+    font-family: 'Inter Medium', sans-serif;
+    font-weight: 500;
 }
 h1,
 h2,

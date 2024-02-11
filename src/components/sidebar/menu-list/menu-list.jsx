@@ -1,6 +1,6 @@
 import React from 'react';
 import { Menu } from 'antd';
-import { menuItems } from '../../../assets/data/menu-items/menu-items.jsx';
+import { menuItems } from '@utils/data/menu-items/menu-items.jsx';
 import classNames from 'classnames';
 
 const MenuList = ({ collapsed, isMobile }) => {

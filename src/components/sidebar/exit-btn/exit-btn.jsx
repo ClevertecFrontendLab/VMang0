@@ -1,5 +1,5 @@
 import React from 'react';
-import ExitIcon from '../../../assets/icons/exit-icon.jsx';
+import ExitIcon from '@utils/icons/exit-icon.jsx';
 import { Button } from 'antd';
 import classNames from 'classnames';
 

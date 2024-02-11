@@ -5,7 +5,7 @@ import { HashRouter, Route, Routes } from 'react-router-dom';
 import { store } from '@redux/configure-store';
 import 'normalize.css';
 import 'antd/dist/antd.css';
-import './assets/style/global.scss';
+import './utils/style/global.scss';
 import App from '@components/main';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

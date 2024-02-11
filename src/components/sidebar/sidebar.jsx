@@ -22,7 +22,7 @@ const Sidebar = () => {
         collapsed: 64
     };
     const sidebarContainerClasses = classNames('sidebar_container', {
-        'sidebar_container__mobile': isMobile,
+        'sidebar_container__mobile': xs,
     });
     return (
         <div className={sidebarContainerClasses}>

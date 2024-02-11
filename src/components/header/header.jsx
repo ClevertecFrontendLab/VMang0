@@ -4,7 +4,7 @@ import { SettingOutlined } from '@ant-design/icons';
 import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint.js';
 const { Title, Link } = Typography;
 
-const Head = () => {
+const Header = () => {
     const { lg, md } = useBreakpoint();
     const level = lg ? 1 : (md ? 3 : 4)
 
@@ -40,4 +40,4 @@ const Head = () => {
     );
 };
 
-export default Head;
+export default Header;

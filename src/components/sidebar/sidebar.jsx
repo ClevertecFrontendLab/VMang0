@@ -4,29 +4,44 @@ const { Sider } = Layout;
 import Logo from './logo'
 import MenuList from './menu-list'
 import ExitBtn from '@components/sidebar/exit-btn/index.jsx';
-import SidebarContainer from '@components/sidebar/sidebar-container/index.jsx';
 import MenuToggle from '@components/sidebar/menu-toggle';
+import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint.js';
+import classNames from 'classnames';
 
 const Sidebar = () => {
+    const { xs } = useBreakpoint();
     const [collapsed, setCollapsed] = useState(false);
+    const toggle = () => {
+        setCollapsed( state => !state);
+    }
+    const isMobile = xs ? {
+        width: 106,
+        collapsed: 0
+    } : {
+        width: 208,
+        collapsed: 64
+    };
+    const sidebarContainerClasses = classNames('sidebar_container', {
+        'sidebar_container__mobile': isMobile,
+    });
     return (
-        <SidebarContainer>
+        <div className={sidebarContainerClasses}>
             <Sider
-                theme={'light'}
                 trigger={null}
                 collapsible
                 collapsed={collapsed}
-                className='sidebar'
-                width={208}
-                collapsedWidth={64}>
-                <Logo collapsed={collapsed} />
-                <MenuList collapsed={collapsed} />
-                <ExitBtn collapsed={collapsed} />
+                width={isMobile.width}
+                collapsedWidth={isMobile.collapsed}>
+                <Logo collapsed={collapsed} isMobile={xs} />
+                <MenuList collapsed={collapsed} isMobile={xs} />
+                <ExitBtn collapsed={collapsed} isMobile={xs} />
             </Sider>
             <MenuToggle
                 collapsed={collapsed}
-                setCollapsed={setCollapsed}/>
-        </SidebarContainer>
+                toggle={toggle}
+                isMobile={xs}
+            />
+        </div>
     );
 };
 

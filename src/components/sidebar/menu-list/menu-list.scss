@@ -1,13 +1,14 @@
+//desktop open menu
 .menu_list {
-    margin-top: 50px;
     display: flex;
     flex-direction: column;
+    margin-top: 50px;
     .ant-menu {
         border: none;
         &-item {
+            height: 42px;
             display: flex;
             align-items: center;
-            height: 42px;
             margin: 0 0 16px 0 !important;
             padding: 0 16px !important;
             .anticon {
@@ -15,25 +16,17 @@
                     width: 16px;
                     height: 16px;
                 }
-                path {
-                    fill: $primary-light-9;
-                }
+                path { fill: $primary-light-9; }
             }
             &-selected {
                 box-shadow: inset -3px 0 0 0 $character-light-link;
-                background-color: $primary-light-1;
-                .anticon {
-                    path {
-                        fill: $primary-light-5;
-                    }
-                }
+                .anticon { path { fill: $primary-light-5; } }
                 .ant-menu-title-content {
                     color: $primary-light-5;
                 }
             }
         }
         &-title-content {
-            height: 18px;
             font-weight: 400;
             font-size: 14px;
             color: $character-light-title-85;
@@ -41,20 +34,46 @@
             align-items: center;
         }
     }
-    &_collapsed {
+    &:not(.ant-menu-horizontal) .ant-menu-item-selected {
+        background-color: $primary-light-1;
+    }
+    .ant-menu-inline-collapsed > .ant-menu-item .anticon {
+        line-height: 0;
+    }
+}
+
+//desktop close menu
+.menu_list {
+    &__collapsed {
         .ant-menu {
             &-item {
                 padding: 13px 24px !important;
+                &-selected {
+                    box-shadow: none;
+                    .anticon { path { fill: $primary-light-6; } }
+                }
             }
             &-title-content {
                 display: none !important;
             }
         }
     }
-    &:not(.ant-menu-horizontal) .ant-menu-item-selected {
-        background-color: $primary-light-1;
-    }
-    .ant-menu-inline-collapsed > .ant-menu-item .anticon {
-        line-height: 0;
+}
+
+//mobile close menu
+.menu_list {
+    &__mobile {
+        margin-top: 16px;
+        .ant-menu {
+            border: none;
+            &-item {
+                margin: 0 0 8px 0 !important;
+                padding: 0 0 0 8px !important;
+                .anticon { display: none; }
+                .anticon + span { margin-left: 0; }
+            }
+        }
+        &__collapsed {
+        }
     }
 }

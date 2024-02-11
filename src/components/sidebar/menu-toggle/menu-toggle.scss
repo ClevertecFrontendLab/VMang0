@@ -9,7 +9,6 @@
     border: none;
     clip-path: polygon(0 0, 100% 12%, 100% 88%, 0% 100%);
     color: $neutral-gray-7;
-    box-shadow: 0 10px 8px 0 rgba(0, 0, 0, 0.15);
     &:focus {
         color: $neutral-gray-7;
     }
@@ -18,5 +17,11 @@
     }
     &:hover {
         color: $primary-light-5;
+    }
+    &__mobile {
+        top: 48px;
+        right: -32px;
+        width: 32px;
+        height: 48px;
     }
 }

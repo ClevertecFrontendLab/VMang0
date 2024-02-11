@@ -1,10 +1,16 @@
 import React from 'react';
 import ExitIcon from '../../../assets/icons/exit-icon.jsx';
 import { Button } from 'antd';
+import classNames from 'classnames';
 
-const ExitBtn = ({ collapsed }) => {
+const ExitBtn = ({ collapsed, isMobile }) => {
+    const exitBtnClasses = classNames('exit_btn', {
+        'exit_btn__collapsed': collapsed && !isMobile,
+        'exit_btn__mobile': isMobile,
+        'exit_btn__mobile__collapsed': collapsed && isMobile,
+    });
     return (
-        <div className={`exit_btn ${collapsed ? 'exit_btn_collapsed' : ''}`}>
+        <div className={exitBtnClasses}>
             <Button icon={<ExitIcon />}>Выход</Button>
         </div>
     );

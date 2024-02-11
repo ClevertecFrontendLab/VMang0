@@ -3,7 +3,7 @@
     bottom: 0;
     width: 100%;
     height: 40px;
-    box-shadow: inset 0 1px 0 0 $character-light-dividers;
+    box-shadow: inset 0 2px 0 0 $character-light-dividers;
     padding: 0 16px;
     display: flex;
     align-items: center;
@@ -32,11 +32,17 @@
             border: 1px solid #1d39c4;
         }
     }
-    &_collapsed {
+    &__collapsed {
+        .ant-btn { span { display: none; } }
+    }
+    &__mobile {
         .ant-btn {
-            span {
-                display: none;
-            }
+            justify-content: center;
+            svg { display: none; }
+            span { margin-left: 0; }
+        }
+        &__collapsed {
+            span { display: none; }
         }
     }
 }

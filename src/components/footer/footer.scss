@@ -1,0 +1,29 @@
+.footer {
+    padding: 0 24px 42px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    flex: 1;
+    .reviews_btn {
+        padding: 9.5px 15px;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 21px;
+        text-align: center;
+        color: $primary-light-6;
+        height: auto;
+        border: none;
+        &:focus-visible {
+            border: 1px solid $primary-light-5;
+        }
+    }
+    @media screen and (max-width: 575px) {
+        padding: 0 16px 42px 16px;
+        flex-direction: column;
+        justify-content: end;
+        .reviews_btn {
+            width: 100%;
+            margin-top: 24px;
+        }
+    }
+}

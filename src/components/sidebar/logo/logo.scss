@@ -1,0 +1,29 @@
+.logo {
+    margin-top: 30px;
+    padding: 14px 46px 17px 29px;
+    transition: opacity 0.8s ease;
+    &__collapsed {
+        width: 64px;
+        height: 64px;
+        padding: 18px;
+    }
+   &__mobile {
+       margin-top: 0;
+       padding: 16px 17px;
+       max-height: 50px;
+       img {
+           width: 72px;
+           height: 18px;
+           vertical-align: baseline;
+           opacity: 1;
+           visibility: visible;
+           transition: opacity 0.8s ease;
+       }
+       &__collapsed {
+           img {
+               opacity: 0;
+               visibility: hidden;
+           }
+       }
+   }
+}

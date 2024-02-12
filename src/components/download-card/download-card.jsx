@@ -8,8 +8,14 @@ const DownloadCard = () => {
     return (
         <Card title={title} bordered={false}
               className='download_card'>
-            <Button icon={<AndroidFilled />}>Android OS</Button>
-            <Button icon={<AppleFilled />}>Apple iOS</Button>
+            <Button icon={<AndroidFilled />}
+                    aria-label='download to android'>
+                Android OS
+            </Button>
+            <Button icon={<AppleFilled />}
+                    aria-label='download to ios'>
+                Apple iOS
+            </Button>
         </Card>
     );
 };

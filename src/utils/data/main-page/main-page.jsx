@@ -5,19 +5,22 @@ export const cardItems = [
         key: '1',
         icon: <HeartFilled />,
         title: 'Расписать тренировки',
-        label: 'Тренировки'
+        label: 'Тренировки',
+        aria: 'schedule training sessions'
     },
     {
         key: '2',
         icon: <CalendarTwoTone />,
         title: 'Назначить календарь',
-        label: 'Календарь'
+        label: 'Календарь',
+        aria: 'assign a calendar'
     },
     {
         key: '3',
         icon: <IdcardOutlined />,
         title: 'Заполнить профиль',
-        label: 'Профиль'
+        label: 'Профиль',
+        aria: 'fill out a profile'
     },
 ];
 

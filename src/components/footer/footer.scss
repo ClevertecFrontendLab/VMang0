@@ -13,6 +13,9 @@
         color: $primary-light-6;
         height: auto;
         border: none;
+        &:focus-visible {
+            border: 1px solid $primary-light-5;
+        }
     }
     @media screen and (max-width: 575px) {
         padding: 0 16px 42px 16px;

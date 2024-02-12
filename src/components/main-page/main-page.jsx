@@ -36,11 +36,15 @@ const MainPage = () => {
                     </Col>
                 </Row>
                 <Row gutter={[16, 8]}>
-                    {cardItems.map(({ key, icon, title, label }) => (
+                    {cardItems.map(({ key, icon, title,
+                                        label , aria}) => (
                         <Col xs={{ span: 24 }} md={{ span: 8 }} key={key}>
                             <Card title={title} bordered={false}
                                   className='mini_card'>
-                                <Button icon={icon}>{label}</Button>
+                                <Button icon={icon}
+                                        aria-label={aria}>
+                                    {label}
+                                </Button>
                             </Card>
                         </Col>
                     ))}

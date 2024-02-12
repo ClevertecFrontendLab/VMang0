@@ -43,6 +43,9 @@
             text-align: center;
             display: flex;
             align-items: center;
+            &:focus-visible {
+                border: 1px solid $primary-light-5;
+            }
         }
         .ant-btn > .anticon {
             line-height: 0;

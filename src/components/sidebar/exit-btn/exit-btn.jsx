@@ -11,7 +11,7 @@ const ExitBtn = ({ collapsed, isMobile }) => {
     });
     return (
         <div className={exitBtnClasses}>
-            <Button icon={<ExitIcon />}>Выход</Button>
+            <Button icon={<ExitIcon />} aria-label='exit'>Выход</Button>
         </div>
     );
 };

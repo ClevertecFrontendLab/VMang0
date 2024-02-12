@@ -47,6 +47,9 @@
                         fill: $primary-light-6
                     }
                 }
+                &:focus-visible {
+                    border: 1px solid $primary-light-5;
+                }
             }
         }
         .ant-card-head-title {

@@ -5,7 +5,9 @@ import { Button } from 'antd';
 const Footer = () => {
     return (
         <div className='footer'>
-            <Button type="link" className='reviews_btn'>Смотреть отзывы</Button>
+            <Button type="link"
+                    className='reviews_btn'
+                    aria-label='view reviews'>Смотреть отзывы</Button>
             <DownloadCard />
         </div>
     );

@@ -29,7 +29,8 @@ const Header = () => {
                         <Col lg={{ span: 3 }} md={{ span: 4 }}
                              sm={{span: 3}} xs={{ span: 2 }} className='btn_settings_wrapper'>
                             <Button icon={<SettingOutlined />}
-                                    className='btn_settings'>
+                                    className='btn_settings'
+                                    aria-label='go to settings'>
                                 Настройки
                             </Button>
                         </Col>

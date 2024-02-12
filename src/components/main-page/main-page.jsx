@@ -1,6 +1,7 @@
 import React from 'react';
-import {Button, Card, Col, List, Row, Typography} from 'antd';
+
 import {cardItems, dataFirstCard} from '@utils/data/main-page/main-page.jsx';
+import {Button, Card, Col, List, Row, Typography} from 'antd';
 const { Text, Title } = Typography;
 
 const MainPage = () => {

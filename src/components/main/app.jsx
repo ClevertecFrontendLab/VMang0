@@ -2,8 +2,8 @@ import React from 'react';
 import { Layout } from 'antd';
 import Sidebar from '@components/sidebar';
 import Header from '@components/header';
-import MainPage from '@components/main-page';
 import Footer from '@components/footer';
+import MainPage from '@components/main-page';
 const { Content } = Layout;
 
 const App = () => {

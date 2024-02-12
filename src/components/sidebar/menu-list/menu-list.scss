@@ -1,4 +1,3 @@
-//desktop open menu
 .menu_list {
     display: flex;
     flex-direction: column;
@@ -42,7 +41,6 @@
     }
 }
 
-//desktop close menu
 .menu_list {
     &__collapsed {
         .ant-menu {
@@ -60,7 +58,6 @@
     }
 }
 
-//mobile close menu
 .menu_list {
     &__mobile {
         margin-top: 16px;
@@ -72,8 +69,6 @@
                 .anticon { display: none; }
                 .anticon + span { margin-left: 0; }
             }
-        }
-        &__collapsed {
         }
     }
 }

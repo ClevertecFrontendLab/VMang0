@@ -12,9 +12,8 @@ const Logo = ({ collapsed, isMobile }) => {
 
     return (
         <div className={logoClasses}>
-            <img
-                src={collapsed && isMobile ? null : (collapsed ? logo_collapsed : logo)}
-                alt="cleverFIT logotype"/>
+            <img src={collapsed && isMobile ? null : (collapsed ? logo_collapsed : logo)}
+                alt="cleverFIT logotype" loading='lazy'/>
         </div>
     );
 };

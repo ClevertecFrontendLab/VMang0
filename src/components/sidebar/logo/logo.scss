@@ -1,6 +1,7 @@
 .logo {
     margin-top: 30px;
     padding: 14px 46px 17px 29px;
+    transition: opacity 0.8s ease;
     &__collapsed {
         width: 64px;
         height: 64px;

@@ -6,7 +6,8 @@ const { Text } = Typography;
 const DownloadCard = () => {
     const title = <><Text>Скачать на телефон</Text> Доступно в PRO-тарифе</>
     return (
-        <Card title={title} bordered={false}
+        <Card title={title}
+              bordered={false}
               className='download_card'>
             <Button icon={<AndroidFilled />}
                     aria-label='download to android'>

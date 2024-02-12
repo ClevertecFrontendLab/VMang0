@@ -1,7 +1,9 @@
 import React from 'react';
 import { Layout } from 'antd';
-import Sidebar from '@components/sidebar/index.jsx';
+import Sidebar from '@components/sidebar';
 import Header from '@components/header';
+import MainPage from '@components/main-page';
+import Footer from '@components/footer';
 const { Content } = Layout;
 
 const App = () => {
@@ -10,7 +12,10 @@ const App = () => {
             <Sidebar />
             <Layout className='app__layout'>
                 <Header />
-                <Content className='app__content'>Content</Content>
+                <Content className='content'>
+                    <MainPage />
+                    <Footer />
+                </Content>
             </Layout>
         </Layout>
     );

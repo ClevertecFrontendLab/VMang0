@@ -1,12 +1,12 @@
-import React from 'react';
 import { Layout } from 'antd';
-import Sidebar from '@components/sidebar';
-import Header from '@components/header';
-import Footer from '@components/footer';
-import MainPage from '@components/main-page';
+import { Sidebar } from '@components/sidebar';
+import { Header} from '@components/header';
+import { Footer } from '@components/footer';
+import { MainPage } from '@components/main-page';
+import { FC } from 'react';
 const { Content } = Layout;
 
-const App = () => {
+export const App: FC = () => {
     return (
         <Layout className='app'>
             <Sidebar />
@@ -20,5 +20,3 @@ const App = () => {
         </Layout>
     );
 };
-
-export default App;

@@ -1,8 +1,8 @@
-import React from 'react';
-import DownloadCard from '@components/download-card';
+import { DownloadCard } from '@components/download-card';
 import { Button } from 'antd';
+import { FC } from 'react';
 
-const Footer = () => {
+export const Footer: FC = () => {
     return (
         <div className='footer'>
             <Button type="link"
@@ -12,5 +12,3 @@ const Footer = () => {
         </div>
     );
 };
-
-export default Footer;

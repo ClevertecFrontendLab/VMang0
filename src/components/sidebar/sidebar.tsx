@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
 import { Layout } from 'antd';
 const { Sider } = Layout;
-import Logo from './logo'
-import MenuList from './menu-list'
-import ExitBtn from '@components/sidebar/exit-btn/index.jsx';
-import MenuToggle from '@components/sidebar/menu-toggle';
+import { Logo } from './logo'
+import { MenuList } from './menu-list'
+import { MenuToggle } from '@components/sidebar/menu-toggle';
 import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint.js';
 import classNames from 'classnames';
+import { FC, useState } from 'react';
+import { ExitBtn } from '@components/sidebar/exit-btn';
 
-const Sidebar = () => {
+export const Sidebar: FC = () => {
     const { xs } = useBreakpoint();
     const [collapsed, setCollapsed] = useState(false);
     const toggle = () => {
@@ -44,5 +44,3 @@ const Sidebar = () => {
         </div>
     );
 };
-
-export default Sidebar;

@@ -1,9 +1,9 @@
-import React from 'react';
-import {Button, Card, Typography } from 'antd';
+import { Button, Card, Typography } from 'antd';
 import { AndroidFilled, AppleFilled } from '@ant-design/icons';
+import { FC } from 'react';
 const { Text } = Typography;
 
-const DownloadCard = () => {
+export const DownloadCard: FC = () => {
     const title = <><Text>Скачать на телефон</Text> Доступно в PRO-тарифе</>
     return (
         <Card title={title}
@@ -20,5 +20,3 @@ const DownloadCard = () => {
         </Card>
     );
 };
-
-export default DownloadCard;

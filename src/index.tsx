@@ -1,17 +1,18 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { HashRouter, Route, Routes } from 'react-router-dom';
+import { StrictMode } from 'react';
 import { store } from '@redux/configure-store';
 import 'normalize.css';
 import 'antd/dist/antd.css';
 import './utils/style/global.scss';
-import App from '@components/main';
+import { App } from '@components/main';
+import { createRoot } from 'react-dom/client';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-
+const root = createRoot(
+    document.getElementById('root') as HTMLElement
+);
 root.render(
-    <React.StrictMode>
+    <StrictMode>
         <Provider store={store}>
             <HashRouter>
                 <Routes>
@@ -19,5 +20,5 @@ root.render(
                 </Routes>
             </HashRouter>
         </Provider>
-    </React.StrictMode>,
+    </StrictMode>
 );

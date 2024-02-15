@@ -1,9 +1,15 @@
-import React from 'react';
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
-import {Button} from 'antd';
+import { Button } from 'antd';
 import classNames from 'classnames';
+import { FC } from "react";
 
-const MenuToggle = ({ collapsed, toggle, isMobile }) => {
+type Props = {
+    collapsed: boolean,
+    toggle: () => void,
+    isMobile: boolean
+}
+
+export const MenuToggle: FC<Props> = ({ collapsed, toggle, isMobile }) => {
     const test_id = isMobile ? 'sider-switch-mobile' : 'sider-switch';
     const exitBtnClasses = classNames('menu_toggle', {
         'menu_toggle__mobile': isMobile
@@ -15,4 +21,3 @@ const MenuToggle = ({ collapsed, toggle, isMobile }) => {
                 icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined /> } />
     );
 };
-export default MenuToggle;

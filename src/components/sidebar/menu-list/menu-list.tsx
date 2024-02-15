@@ -1,9 +1,14 @@
-import React from 'react';
 import { Menu } from 'antd';
-import { menuItems } from '@utils/data/menu-items/menu-items.jsx';
+import { menuItems } from '@utils/data/menu-items/menu-items.js';
 import classNames from 'classnames';
+import { FC } from 'react';
 
-const MenuList = ({ collapsed, isMobile }) => {
+type Props = {
+    collapsed: boolean,
+    isMobile: boolean
+}
+
+export const MenuList: FC<Props> = ({ collapsed, isMobile }) => {
     const menuClasses = classNames('menu_list', {
         'menu_list__collapsed': collapsed && !isMobile,
         'menu_list__mobile': isMobile,
@@ -18,5 +23,3 @@ const MenuList = ({ collapsed, isMobile }) => {
         </div>
     );
 };
-
-export default MenuList;

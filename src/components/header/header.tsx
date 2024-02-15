@@ -1,10 +1,10 @@
-import React from 'react';
 import { SettingOutlined } from '@ant-design/icons';
 import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint.js';
-import {Button, Col, Layout, Row, Typography} from 'antd';
+import { Button, Col, Layout, Row, Typography } from 'antd';
 const { Title, Link } = Typography;
+import { FC } from 'react';
 
-const Header = () => {
+export const Header: FC = () => {
     const { lg, md } = useBreakpoint();
     const level = lg ? 1 : (md ? 3 : 4)
 
@@ -40,5 +40,3 @@ const Header = () => {
         </div>
     );
 };
-
-export default Header;

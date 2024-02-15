@@ -1,9 +1,14 @@
-import React from 'react';
 import logo from './logo.png';
 import logo_collapsed from './logo_collapsed.png';
 import classNames from 'classnames';
+import { FC } from 'react';
 
-const Logo = ({ collapsed, isMobile }) => {
+type Props = {
+    collapsed: boolean,
+    isMobile: boolean
+}
+
+export const Logo: FC<Props> = ({ collapsed, isMobile }) => {
     const logoClasses = classNames('logo', {
         'logo__collapsed': collapsed && !isMobile,
         'logo__mobile': isMobile,
@@ -17,5 +22,3 @@ const Logo = ({ collapsed, isMobile }) => {
         </div>
     );
 };
-
-export default Logo;

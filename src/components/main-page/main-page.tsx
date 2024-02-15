@@ -1,10 +1,9 @@
-import React from 'react';
-
-import {cardItems, dataFirstCard} from '@utils/data/main-page/main-page.jsx';
-import {Button, Card, Col, List, Row, Typography} from 'antd';
+import { cardItems, dataFirstCard } from '@utils/data/main-page/main-page.js';
+import { Button, Card, Col, List, Row, Typography } from 'antd';
 const { Text, Title } = Typography;
+import { FC } from 'react';
 
-const MainPage = () => {
+export const MainPage: FC = () => {
     return (
         <div className='content_container'>
             <Col xs={24} sm={24} md={24} lg={18} xl={16} className='width-752'>
@@ -54,5 +53,3 @@ const MainPage = () => {
         </div>
     );
 };
-
-export default MainPage;

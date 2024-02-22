@@ -1,0 +1,52 @@
+$LOGIN_DEFAULT: 742px;
+$LOGIN_MOBILE: 612PX;
+$REGISTRATION_DEFAULT: 686px;
+$REGISTRATION_MOBILE: 564px;
+
+.auth_container {
+    width: 539px;
+    height: $LOGIN_DEFAULT;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 2px;
+    padding: 64px 85.5px;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
+    background: $character-light-primary-inverse;
+    //margin-top: 140px;
+    &_fixed {
+        position: fixed;
+    }
+    img {
+        width: 309px;
+        height: 76px;
+        margin-bottom: 48px;
+    }
+    &_registr {
+        width: 539px;
+        height: $REGISTRATION_DEFAULT;
+        //margin-top: 168px;
+    }
+
+    /*@media (min-width: 576px) and (max-width: 991px) {
+        margin-top: 200px;
+        &_registr {
+            margin-top: 228px;
+        }
+    }*/
+    @media screen and (max-width: 575px) {
+        width: 328px;
+        height: $LOGIN_MOBILE;
+        //margin-top: 90px;
+        padding: 32px 16px;
+        img {
+            width: 203px;
+            height: 50px;
+            //margin-bottom: 32px;
+        }
+        &_registr {
+            //margin-top: 114px;
+            height: $REGISTRATION_MOBILE;
+        }
+    }
+}

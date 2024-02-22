@@ -4,10 +4,11 @@
     margin: 0 auto;
     background: no-repeat fixed center/cover url('../../utils/image/main_page_light.png');
     &__layout {
-        background: transparent;
-    }
-    .content {
         display: flex;
         flex-direction: column;
+        background: transparent;
+    }
+    &__unauth {
+        background: no-repeat fixed center/cover url('../../utils/image/unauth_pages_light.png');
     }
 }

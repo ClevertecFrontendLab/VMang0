@@ -8,11 +8,9 @@ export const MainPage: FC = () => {
         <div className='content_container'>
             <Col xs={24} sm={24} md={24} lg={18} xl={16} className='width-752'>
                 <Row>
-                    <Col
-                         className='list_card'>
+                    <Col className='list_card'>
                         <Card bordered={false}>
-                            <List
-                                header={<Text>С CleverFit ты сможешь:</Text>}
+                            <List header={<Text>С CleverFit ты сможешь:</Text>}
                                 dataSource={dataFirstCard}
                                 renderItem={item => (
                                     <List.Item>
@@ -24,8 +22,7 @@ export const MainPage: FC = () => {
                     </Col>
                 </Row>
                 <Row>
-                    <Col
-                         className='text_card'>
+                    <Col className='text_card'>
                         <Card bordered={false}>
                             <Title level={4}>
                                 CleverFit — это не просто приложение, а твой личный
@@ -39,10 +36,8 @@ export const MainPage: FC = () => {
                     {cardItems.map(({ key, icon, title,
                                         label , aria}) => (
                         <Col xs={{ span: 24 }} md={{ span: 8 }} key={key}>
-                            <Card title={title} bordered={false}
-                                  className='mini_card'>
-                                <Button icon={icon}
-                                        aria-label={aria}>
+                            <Card title={title} bordered={false} className='mini_card'>
+                                <Button icon={icon} aria-label={aria}>
                                     {label}
                                 </Button>
                             </Card>

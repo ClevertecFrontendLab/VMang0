@@ -8,6 +8,12 @@
 @import '../../components/sidebar/exit-btn/exit-btn.scss';
 @import '../../components/sidebar/menu-toggle/menu-toggle.scss';
 @import '../../components/header/header.scss';
-@import '../../components/main-page/main-page.scss';
+@import '../../pages/main-page/main-page.scss';
 @import '../../components/footer/footer.scss';
 @import '../../components/download-card/download-card.scss';
+
+@import '../../components/auth-container/auth-container.scss';
+@import '../../components/blur/blur.scss';
+@import '../../components/loader/loader.scss';
+@import '../../components/tabs/tabs.scss';
+@import '../../components/login-form/login-form.scss';

@@ -41,11 +41,12 @@ export const LoginForm = () => {
             name='login_form'
             form={form}
             className='auth_form auth_form_login'
-            initialValues={{ remember: true }}
+            initialValues={{ isRemember: true }}
             onFinish={handleLogin}
         >
             <Form.Item
                 name='email'
+                data-test-id='login-email'
                 className='auth_form_input auth_form_input_email'
                 rules={[
                     { required: true, message: '' },
@@ -58,9 +59,16 @@ export const LoginForm = () => {
             <Form.Item
                 name='password'
                 className='auth_form_input auth_form_input_password'
-                rules={[{ required: true, message: '' }]}
+                rules={[
+                    { required: true, message: '' },
+                    {
+                        pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/,
+                        message: '',
+                    },
+                ]}
             >
                 <Input.Password
+                    data-test-id='login-password'
                     placeholder='Пароль'
                     autoComplete='on'
                     iconRender={visible => (visible
@@ -68,18 +76,27 @@ export const LoginForm = () => {
                         : <EyeInvisibleOutlined />)}
                 />
             </Form.Item>
-            <Form.Item className='auth_controls' shouldUpdate>
-                <Checkbox name='isRemember' defaultChecked>Запомнить меня</Checkbox>
-                <Button
-                    type='link'
-                    className='auth_controls_forgot'
-                    disabled={isForgotDisable}
-                    onClick={handleForgotPassword}
-                >
-                    Забыли пароль?
-                </Button>
+            <Form.Item className='auth_controls'
+                       shouldUpdate>
+                <Form.Item name='isRemember'
+                           valuePropName='checked'
+                           noStyle>
+                    <Checkbox data-test-id='login-remember'>Запомнить меня</Checkbox>
+                </Form.Item>
+                <Form.Item data-test-id='login-forgot-button' noStyle>
+                    <Button
+                        type='link'
+                        className='auth_controls_forgot'
+                        disabled={isForgotDisable}
+                        onClick={handleForgotPassword}
+                    >
+                        Забыли пароль?
+                    </Button>
+                </Form.Item>
             </Form.Item>
-            <Form.Item className='auth_form_btn_item' shouldUpdate>
+            <Form.Item className='auth_form_btn_item'
+                       data-test-id='login-submit-button'
+                       shouldUpdate>
                 {() => (
                     <Button
                         type='primary'

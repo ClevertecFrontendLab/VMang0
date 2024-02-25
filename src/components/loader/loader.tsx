@@ -1,19 +1,9 @@
 import loader from './loader.json';
-import Lottie from 'react-lottie';
+import Lottie from 'lottie-react';
 import { Layout } from 'antd';
 
-export const Loader = () => {
-    const defaultOptions = {
-        loop: true,
-        autoplay: true,
-        animationData: loader,
-        rendererSettings: {
-            preserveAspectRatio: 'xMidYMid slice',
-        },
-    };
-    return (
-        <Layout className='loader'>
-            <Lottie options={defaultOptions} />
-        </Layout>
-    );
-};
+export const Loader = () => (
+    <Layout className='loader' data-test-id='loader'>
+        <Lottie animationData={loader} />
+    </Layout>
+);

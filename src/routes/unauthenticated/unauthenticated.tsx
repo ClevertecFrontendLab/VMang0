@@ -14,5 +14,5 @@ export const UnauthenticatedRoute = () => {
                 <Blur styleProp={`${isLoading ? 'blur_disabled' : ''}`}><Outlet /></Blur>
             </Layout>
         )
-        : <Navigate to={MAIN} />;
+        : <Navigate to={MAIN} replace />;
 };

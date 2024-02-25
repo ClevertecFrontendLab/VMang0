@@ -6,5 +6,5 @@ export const AuthenticatedRoute = () => {
     const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
     return isAuthenticated
         ? <Outlet />
-        : <Navigate to={LOGIN} />;
+        : <Navigate to={LOGIN} replace />;
 };

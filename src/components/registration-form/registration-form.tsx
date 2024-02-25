@@ -1,36 +1,59 @@
 import { Button, Form, Input } from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone, GooglePlusOutlined } from '@ant-design/icons';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '@redux/configure-store';
-import { login } from '@redux/actions/login';
+import { registration } from '@redux/actions/registration';
+import { useEffect } from 'react';
+import { ERROR_REGISTRATION } from '@utils/constants/route-path/route-path';
+import { setRegistrationData } from '@redux/slices/userSlice';
 const { useForm } = Form;
 
 export const RegistrationForm = () => {
     const dispatch = useDispatch<AppDispatch>();
     const [form] = useForm();
+    const previosRouter = useSelector((state) =>
+        state.router.previousLocations[1]?.location?.pathname);
+    const registrationData = useSelector( state => state.user.registrationData)
 
-    const handleLogin = async () => {
-        console.log('не зашло')
-        const email = 'combtmp+kh1d2@gmail.com';
-        const password = '123456mM';
-        await sendData(email, password);
+    const handleRegistration = async () => {
+        const { email, password } = form.getFieldsValue();
+        dispatch(setRegistrationData({ email, password }));
+        await dispatch(registration({ email, password }));
     };
 
-    const sendData = async (email: string, password: string) => {
-        await dispatch(login({ email, password, isRemember: true }));
-    };
+    const onChangePassword = () => {
+        if (form.isFieldTouched('confirmPassword')) {
+            form.validateFields(['confirmPassword']);
+        }
+    }
+
+    useEffect(() => {
+        if (previosRouter === ERROR_REGISTRATION) {
+            form.setFieldsValue({
+                ...registrationData,
+                confirmPassword: registrationData.password
+            });
+            handleRegistration();
+        }
+    }, [])
 
     return (
         <Form name='login_form'
               form={form}
               className='auth_form auth_form_registr'
               initialValues={{ remember: true }}
-              onFinish = {handleLogin}>
+              onFinish = {handleRegistration}>
             <Form.Item>
-                <Form.Item name="email" className='auth_form_input auth_form_input_email'
-                           rules={[{ required: true, message: '' },
-                               { type: 'email', message: '' }]}>
-                    <Input addonBefore='e-mail:' type='email'/>
+                <Form.Item
+                    name='email'
+                    data-test-id='registration-email'
+                    className='auth_form_input auth_form_input_email'
+                    rules={[
+                        { required: true, message: '' },
+                        { type: 'email', message: '' },
+                    ]}
+                >
+                    <Input type='email' addonBefore='e-mail:' />
                 </Form.Item>
                 <Form.Item
                     name='password'
@@ -39,12 +62,14 @@ export const RegistrationForm = () => {
                     rules={[
                         { required: true, message: '' },
                         {
-                            pattern: /^(?=.*[A-Za-z])(?=.*\d).{8,}$/,
+                            pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/,
                             message: 'Пароль не менее 8 символов, с заглавной буквой и цифрой',
                         },
                     ]}
+                    onChange={onChangePassword}
                 >
                     <Input.Password
+                        data-test-id='registration-password'
                         placeholder='Пароль'
                         autoComplete='on'
                         iconRender={visible => (visible
@@ -53,7 +78,8 @@ export const RegistrationForm = () => {
                     />
                 </Form.Item>
                 <Form.Item
-                    name='confirm password'
+                    name='confirmPassword'
+                    data-test-id='registration-confirm-password'
                     className='auth_form_input auth_form_input_password'
                     rules={[{ required: true, message: '' },
                         ({ getFieldValue }) => ({
@@ -73,7 +99,9 @@ export const RegistrationForm = () => {
                     />
                 </Form.Item>
             </Form.Item>
-            <Form.Item className='auth_form_btn_item' shouldUpdate>
+            <Form.Item data-test-id='registration-submit-button'
+                       className='auth_form_btn_item'
+                       shouldUpdate>
                 {() => (
                     <Button
                         type='primary'
@@ -82,7 +110,6 @@ export const RegistrationForm = () => {
                         disabled={
                             !!form.getFieldsError().filter(({ errors }) => errors.length).length
                         }
-                        onClick={handleLogin}
                     >
                         Войти
                     </Button>

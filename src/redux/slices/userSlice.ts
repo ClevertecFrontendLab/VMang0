@@ -1,24 +1,36 @@
-import { createSlice, SliceCaseReducers } from '@reduxjs/toolkit';
-import { UserType } from '@redux/types/types';
+import { createSlice, PayloadAction, SliceCaseReducers } from '@reduxjs/toolkit';
+import { RegistrationData, UserType } from '@redux/types/types';
 import { login } from '@redux/actions/login';
 import { RootState } from '@redux/configure-store';
+import { registration } from '@redux/actions/registration';
 
 const initialState: UserType = {
     accessToken: localStorage.getItem('accessToken') || '',
     isLoading: false,
-    isRemember: false,
     isAuthenticated: !!localStorage.getItem('accessToken'),
-    error: {
-        statusCode: 0,
-        error: '',
-        message: ''
+    error: false,
+    registrationData: {
+        email: '',
+        password: ''
     }
 };
 
 const userSlice = createSlice<UserType, SliceCaseReducers<UserType>>({
     name: 'user',
     initialState,
-    reducers: {},
+    reducers: {
+        setErrorState: (state, action) => {
+            state.error = action.payload;
+        },
+        userLogout: (state) => {
+            state.accessToken = '';
+            state.isAuthenticated = false;
+            localStorage.removeItem('accessToken');
+        },
+        setRegistrationData: (state,  action: PayloadAction<RegistrationData>) => {
+            state.registrationData = action.payload;
+        }
+    },
     extraReducers: builder => {
         builder
             .addCase(login.fulfilled, (state, action) => {
@@ -32,10 +44,19 @@ const userSlice = createSlice<UserType, SliceCaseReducers<UserType>>({
             .addCase(login.rejected, (state) => {
                 state.isLoading = false;
             })
+            .addCase(registration.fulfilled, (state) => {
+                state.isLoading = false;
+            })
+            .addCase(registration.pending, (state) => {
+                state.isLoading = true;
+            })
+            .addCase(registration.rejected, (state) => {
+                state.isLoading = false;
+            })
     }
 })
 
-/*export const { setUser, logout } = userSlice.actions;*/
+export const { setErrorState, userLogout, setRegistrationData } = userSlice.actions;
 export const getLoadingState = (state: RootState) => state.user.isLoading;
 export const getAuthenticated = (state: RootState) => state.user.isAuthenticated;
 export default userSlice.reducer;

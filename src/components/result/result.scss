@@ -1,0 +1,41 @@
+.result {
+    padding: 64px 85.5px;
+    border-radius: 2px;
+    width: 539px;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
+    background: $character-light-primary-inverse;
+    &_specific {
+        padding: 64px 32px 56px;
+        .ant-result {
+            &-icon {
+                min-height: 80px;
+                height: auto;
+            }
+            &-extra {
+                button {
+                    width: auto;
+                    padding: 10px 15px;
+                }
+            }
+            &-subtitle {
+                max-width: 87%;
+                margin: 0 auto;
+            }
+        }
+        &_padding {
+            padding: 64px 85.5px 56px;
+        }
+    }
+}
+@media screen and (max-width: 575px) {
+    .result {
+        width: 328px;
+        padding: 32px 16px;
+        &_specific {
+            padding: 64px 32px 56px;
+        }
+        .ant-result-subtitle  {
+            max-width: none;
+        }
+    }
+}

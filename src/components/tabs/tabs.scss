@@ -1,0 +1,44 @@
+.tabs_wrapper {
+    width: 100%;
+    mix-blend-mode: darken;
+    margin-bottom: 24px;
+    .ant-btn {
+        height: auto;
+        border: none;
+    }
+    .tab {
+        width: 50%;
+        border-radius: 0;
+        font-size: 16px;
+        padding: 12.5px 0;
+        color: $character-light-title-85;
+        border-bottom: 1px solid $character-light-dividers;
+        transition: color 0.3s ease;
+        box-shadow: none;
+        max-height: 46px;
+        line-height: 130%;
+        &:focus-visible {
+            border: 1px solid $primary-light-6;
+        }
+        &_active {
+            position: relative;
+            color: $primary-light-6;
+            border-bottom: none;
+        }
+        .tab_line {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: $primary-light-6;
+        }
+        .tab_active .tab_line {
+            transform: translateX(50%);
+        }
+        @media screen and (max-width: 575px) {
+            padding: 14px;
+            font-size: 14px;
+        }
+    }
+}

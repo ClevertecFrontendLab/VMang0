@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import { LOGIN, REGISTRATION } from '@utils/constants/route-path/route-path';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Button } from 'antd';
@@ -8,7 +9,7 @@ const items = [
     { label: 'Регистрация', key: REGISTRATION },
 ];
 
-export const Tabs = () => {
+export const Tabs: FC = () => {
     const navigate = useNavigate();
     const { pathname } = useLocation();
 
@@ -17,6 +18,7 @@ export const Tabs = () => {
             navigate(key);
         }
     }
+
     return (
         <div className='tabs_wrapper'>
             {items.map((item) => (

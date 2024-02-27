@@ -1,14 +1,14 @@
+import { FC, useEffect } from 'react';
 import { Button, Form, Input } from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone, GooglePlusOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '@redux/configure-store';
 import { registration } from '@redux/actions/registration';
-import { useEffect } from 'react';
 import { ERROR_REGISTRATION } from '@utils/constants/route-path/route-path';
 import { setRegistrationData } from '@redux/slices/userSlice';
 const { useForm } = Form;
 
-export const RegistrationForm = () => {
+export const RegistrationForm: FC = () => {
     const dispatch = useDispatch<AppDispatch>();
     const [form] = useForm();
     const previosRouter = useSelector((state) =>
@@ -28,7 +28,7 @@ export const RegistrationForm = () => {
     }
 
     useEffect(() => {
-        if (previosRouter === ERROR_REGISTRATION) {
+        if (previosRouter === ERROR_REGISTRATION && registrationData.password !== '') {
             form.setFieldsValue({
                 ...registrationData,
                 confirmPassword: registrationData.password
@@ -38,10 +38,9 @@ export const RegistrationForm = () => {
     }, [])
 
     return (
-        <Form name='login_form'
+        <Form name='registration_form'
               form={form}
               className='auth_form auth_form_registr'
-              initialValues={{ remember: true }}
               onFinish = {handleRegistration}>
             <Form.Item>
                 <Form.Item
@@ -62,7 +61,7 @@ export const RegistrationForm = () => {
                     rules={[
                         { required: true, message: '' },
                         {
-                            pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/,
+                            pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z0-9]{8,}$/,
                             message: 'Пароль не менее 8 символов, с заглавной буквой и цифрой',
                         },
                     ]}

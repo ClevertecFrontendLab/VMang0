@@ -27,7 +27,7 @@
                 border-left: 1px solid #d9d9d9 }
         }
         &:first-child {margin-bottom: 32px;}
-        &:nth-child(2) {margin-bottom: 30px;}
+        &:nth-child(2) {margin-bottom: 54px;}
         .ant-input:focus, .ant-input:hover,
         .ant-input-affix-wrapper:hover,
         .ant-input-affix-wrapper:focus,
@@ -68,6 +68,9 @@
             max-height: 24px;
             &:hover {
                 color: $primary-light-6;
+            }
+            &:disabled {
+                color: $character-light-disable-25;
             }
         }
     }
@@ -128,7 +131,6 @@
             border-color: $primary-light-5;
         }
     }
-
     &_registr {
         .auth_form_input {
             &:first-child { margin-top: 8px; }
@@ -136,8 +138,10 @@
             &:nth-child(3) {margin-bottom: 38px;}
         }
     }
+}
 
-    @media screen and (max-width: 575px) {
+@media screen and (max-width: 575px) {
+    .auth_form {
         &_btn, &_google {
             font-size: 14px;
             span:nth-child(2) { font-size: 14px; }

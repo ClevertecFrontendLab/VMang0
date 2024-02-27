@@ -1,20 +1,24 @@
-import { useCallback, useEffect, useState } from 'react';
+import { FC, useCallback, useEffect, useState } from 'react';
 import { Button, Checkbox, Form, Input } from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone, GooglePlusOutlined } from '@ant-design/icons';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '@redux/configure-store';
 import { login } from '@redux/actions/login';
+import { checkEmail } from '@redux/actions/password-recovery';
+import { ERROR_CHECK_EMAIL } from '@utils/constants/route-path/route-path';
+import { setRegistrationData } from '@redux/slices/userSlice';
 const { useForm } = Form;
 
-export const LoginForm = () => {
+export const LoginForm: FC = () => {
     const [form] = useForm();
     const dispatch = useDispatch<AppDispatch>();
     const [email, setEmail] = useState<string>('');
     const [isForgotDisable, setIsForgotDisable] = useState<boolean>(false);
+    const registrationData = useSelector( state => state.user.registrationData);
+    const previosRouter = useSelector((state) =>
+        state.router.previousLocations[1]?.location?.pathname);
 
     const handleLogin = async () => {
-        /*const email = 'combtmp+kh1d2@gmail.com';
-        const password = '123456mM';*/
         const { email, password, isRemember } = form.getFieldsValue();
         await dispatch(login({ email, password, isRemember }));
     };
@@ -26,7 +30,10 @@ export const LoginForm = () => {
     }, [form])
 
     const handleForgotPassword = () => {
-        successHandleWithValidateEmail(() => console.log('зашло'))
+        successHandleWithValidateEmail(() => {
+            dispatch(setRegistrationData(form.getFieldsValue()));
+            dispatch(checkEmail({ email }))
+        })
     }
 
     useEffect(() => {
@@ -34,7 +41,16 @@ export const LoginForm = () => {
             successHandleWithValidateEmail(() =>
                 setIsForgotDisable(false))
         }
-    }, [form, successHandleWithValidateEmail, email])
+    }, [form, successHandleWithValidateEmail, email]);
+
+    useEffect(() => {
+        if (previosRouter === ERROR_CHECK_EMAIL && registrationData.email !== '') {
+            form.setFieldsValue({
+                email: registrationData.email
+            });
+            handleForgotPassword();
+        }
+    }, [])
 
     return (
         <Form
@@ -62,7 +78,7 @@ export const LoginForm = () => {
                 rules={[
                     { required: true, message: '' },
                     {
-                        pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/,
+                        pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z0-9]{8,}$/,
                         message: '',
                     },
                 ]}
@@ -83,9 +99,10 @@ export const LoginForm = () => {
                            noStyle>
                     <Checkbox data-test-id='login-remember'>Запомнить меня</Checkbox>
                 </Form.Item>
-                <Form.Item data-test-id='login-forgot-button' noStyle>
+                <Form.Item noStyle>
                     <Button
                         type='link'
+                        data-test-id='login-forgot-button'
                         className='auth_controls_forgot'
                         disabled={isForgotDisable}
                         onClick={handleForgotPassword}

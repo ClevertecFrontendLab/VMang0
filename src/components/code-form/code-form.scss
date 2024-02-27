@@ -1,0 +1,85 @@
+.code_form {
+    width: 539px;
+    padding: 64px 32px 56px;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
+    background: $character-light-primary-inverse;
+    .ant-typography {
+        display: block;
+        margin-top: 24px;
+        font-size: 14px;
+        line-height: 130%;
+        text-align: center;
+        color: $character-light-secondary-45;
+    }
+    .ant-result-title {
+        max-width: 390px;
+        margin: 0 auto;
+    }
+    .container {
+        height: auto;
+        gap: 12px;
+        margin: 0 auto;
+        .character {
+            border: 1px solid $character-light-border;
+            border-radius: 2px;
+            width: 40px;
+            height: 40px;
+            font-size: 14px;
+            color: $character-light-title-85;
+            line-height: 40px;
+            &--inactive {
+                background-color: transparent;
+            }
+            &--selected {
+                position: relative;
+                outline: none;
+                border: 1px solid $primary-light-5;
+                box-shadow: 0 0 0 2px rgba(47, 84, 235, 0.2);
+                &:not(.character--filled) {
+                    color: transparent;
+                    &::after {
+                        content: "";
+                        width: 1px;
+                        height: 18px;
+                        background-color: $neutral-gray-13;
+                        display: block;
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        animation: blink 1s infinite step-end;
+                    }
+                }
+            }
+            &_error {
+                border-color: $character-light-error;
+                &:where(.character--selected) {
+                    border: 1px solid $character-light-error;
+                    box-shadow: 0 0 0 2px rgba(255, 120, 117, 0.2);
+                }
+            }
+            @keyframes blink {
+                0% {
+                    opacity: 1;
+                }
+                50% {
+                    opacity: 0;
+                }
+            }
+        }
+    }
+    &_fixed {
+        position: fixed;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .code_form {
+        width: 328px;
+        padding: 32px 16px;
+        .container {
+            width: 280px;
+            gap: 8px;
+        }
+    }
+}

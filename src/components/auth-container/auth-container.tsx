@@ -1,5 +1,5 @@
+import { FC } from 'react';
 import { useLocation } from 'react-router-dom';
-import logo from '@components/sidebar/logo/logo.png';
 import { LOGIN, REGISTRATION } from '@utils/constants/route-path/route-path';
 import { LoginForm } from '@components/login-form';
 import { RegistrationForm } from '@components/registration-form';
@@ -9,21 +9,23 @@ import { useSelector } from 'react-redux';
 import { getLoadingState } from '@redux/slices/userSlice';
 import classNames from 'classnames';
 import { Tabs } from '@components/tabs';
+import logo_ from '../sidebar/logo/logo.svg';
 
-export const AuthContainer = () => {
-    const isLoading = useSelector(rootState => getLoadingState(rootState));
+export const AuthContainer: FC = () => {
+    const isLoadingAuth = useSelector(rootState => getLoadingState(rootState));
+    const isLoadingRecoveryPass = useSelector(state => state.recoveryPassword.isLoading);
     const { pathname } = useLocation();
     const authFormClasses = classNames('auth_container', {
-        'auth_container_fixed': isLoading,
+        'auth_container_fixed': isLoadingAuth || isLoadingRecoveryPass,
         'auth_container_registr': pathname === REGISTRATION
     });
 
     return (
         <>
-            { isLoading && <Blur styleProp='blur_center' />}
-            { isLoading && <Loader /> }
+            { (isLoadingAuth || isLoadingRecoveryPass) && <Blur />}
+            { (isLoadingAuth || isLoadingRecoveryPass) && <Loader /> }
             <div className={authFormClasses}>
-                <img src={logo} alt='cleverFIT logotype' loading='lazy'/>
+                <img src={logo_} alt='cleverFIT logotype' loading='lazy'/>
                 <Tabs />
                 { pathname === LOGIN ? <LoginForm /> : <RegistrationForm /> }
             </div>

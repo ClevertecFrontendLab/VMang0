@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction, SliceCaseReducers } from '@reduxjs/toolkit';
-import { RegistrationData, UserType } from '@redux/types/types';
+import { RegistrationDataType, UserType } from '@redux/types/types';
 import { login } from '@redux/actions/login';
 import { RootState } from '@redux/configure-store';
 import { registration } from '@redux/actions/registration';
@@ -22,19 +22,21 @@ const userSlice = createSlice<UserType, SliceCaseReducers<UserType>>({
         setErrorState: (state, action) => {
             state.error = action.payload;
         },
+        setLoadingState: (state, action) => {
+            state.isLoading = action.payload;
+        },
         userLogout: (state) => {
             state.accessToken = '';
             state.isAuthenticated = false;
             localStorage.removeItem('accessToken');
         },
-        setRegistrationData: (state,  action: PayloadAction<RegistrationData>) => {
+        setRegistrationData: (state,  action: PayloadAction<RegistrationDataType>) => {
             state.registrationData = action.payload;
         }
     },
     extraReducers: builder => {
         builder
             .addCase(login.fulfilled, (state, action) => {
-                state.isLoading = false;
                 state.isAuthenticated = true;
                 state.accessToken = action.payload.accessToken;
             })
@@ -56,7 +58,8 @@ const userSlice = createSlice<UserType, SliceCaseReducers<UserType>>({
     }
 })
 
-export const { setErrorState, userLogout, setRegistrationData } = userSlice.actions;
+export const { setErrorState, userLogout, setRegistrationData, setLoadingState }
+    = userSlice.actions;
 export const getLoadingState = (state: RootState) => state.user.isLoading;
 export const getAuthenticated = (state: RootState) => state.user.isAuthenticated;
 export default userSlice.reducer;

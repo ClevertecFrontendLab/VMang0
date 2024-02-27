@@ -1,5 +1,5 @@
-import logo from './logo.png';
-import logo_collapsed from './logo_collapsed.png';
+import logo from './logo.svg';
+import logo_collapsed from './logo_collapsed.svg';
 import classNames from 'classnames';
 import { FC } from 'react';
 

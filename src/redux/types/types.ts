@@ -3,12 +3,16 @@ export type UserType = {
     isLoading: boolean,
     isAuthenticated: boolean,
     error: boolean,
-    registrationData: RegistrationData
+    registrationData: RegistrationDataType
 }
-export type RegistrationData = {
+export type RegistrationDataType = {
     email: string,
     password: string
 }
 export type TokenType = {
     accessToken: string
+}
+export type RecoveryType = {
+    isLoading: boolean,
+    password: string
 }

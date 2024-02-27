@@ -4,33 +4,38 @@
     width: 539px;
     box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
     background: $character-light-primary-inverse;
-    .ant-result {
-        &-icon  {
-            height: 80px;
-        }
-        &-title {
-            font-family: 'Inter Medium', sans-serif;
-            color: $character-light-title-85;
-            line-height: 130%;
-        }
-        &-subtitle {
-            color: $character-light-secondary-45;
-            line-height: 130%;
-        }
-        &-extra {
-            button {
-                width: 100%;
-                height: 40px;
-                padding: 11px 0;
-                box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.04);
-                background: $primary-light-6;
-                line-height: 130%;
-                color: $character-light-primary-inverse;
+    &_specific {
+        padding: 64px 32px 56px;
+        .ant-result {
+            &-icon {
+                min-height: 80px;
+                height: auto;
+            }
+            &-extra {
+                button {
+                    width: auto;
+                    padding: 10px 15px;
+                }
+            }
+            &-subtitle {
+                max-width: 87%;
+                margin: 0 auto;
             }
         }
+        &_padding {
+            padding: 64px 85.5px 56px;
+        }
     }
-    @media screen and (max-width: 575px) {
+}
+@media screen and (max-width: 575px) {
+    .result {
         width: 328px;
         padding: 32px 16px;
+        &_specific {
+            padding: 64px 32px 56px;
+        }
+        .ant-result-subtitle  {
+            max-width: none;
+        }
     }
 }

@@ -1,6 +1,10 @@
 import { Button, Result } from 'antd';
 import { FC } from 'react';
-import { history } from '@redux/configure-store';
+import { AppDispatch, history } from '@redux/configure-store';
+import { useDispatch } from 'react-redux';
+import { ERROR_CHANGE_PASSWORD } from '@utils/constants/route-path/route-path';
+import { useLocation } from 'react-router-dom';
+import { push } from 'redux-first-history';
 
 type Props = {
     data: {
@@ -11,22 +15,31 @@ type Props = {
         link: string,
         testId: string
     }
+    style?: string,
 }
 
-export const ResultWindow: FC<Props> = ({ data }) => {
+export const ResultWindow: FC<Props> = ({ data, style= '' }) => {
     const { status, mainTitle, title, btnName, link, testId } = data;
+    const dispatch = useDispatch<AppDispatch>();
+    const { pathname } = useLocation();
     const handleClick = () => {
-        history.replace(link);
-    }
+        if (pathname === ERROR_CHANGE_PASSWORD) {
+            dispatch(push(link,
+                { result: 'Ошибка изменения пароля!' }));
+        } else {
+            history.replace(link);
+        }
+    };
+
     return (
         <Result
-            className='result'
+            className={`result ${style}`}
             status={status}
             title={mainTitle}
             subTitle={title}
             extra={
                 <Button type='primary'
-                        data-test-id = {testId}
+                        data-test-id={testId}
                         onClick={handleClick}>
                     { btnName }
                 </Button>

@@ -25,6 +25,12 @@ const userSlice = createSlice<UserType, SliceCaseReducers<UserType>>({
         setLoadingState: (state, action) => {
             state.isLoading = action.payload;
         },
+        setAuthData: (state, action: PayloadAction<UserType>) => {
+            const { accessToken, isAuthenticated } = action.payload;
+            localStorage.setItem('accessToken', accessToken);
+            state.isAuthenticated = isAuthenticated;
+            state.accessToken = accessToken;
+        },
         userLogout: (state) => {
             state.accessToken = '';
             state.isAuthenticated = false;
@@ -39,6 +45,7 @@ const userSlice = createSlice<UserType, SliceCaseReducers<UserType>>({
             .addCase(login.fulfilled, (state, action) => {
                 state.isAuthenticated = true;
                 state.accessToken = action.payload.accessToken;
+                state.isLoading = false;
             })
             .addCase(login.pending, (state) => {
                 state.isLoading = true;
@@ -58,7 +65,7 @@ const userSlice = createSlice<UserType, SliceCaseReducers<UserType>>({
     }
 })
 
-export const { setErrorState, userLogout, setRegistrationData, setLoadingState }
+export const { setErrorState, userLogout, setRegistrationData, setLoadingState, setAuthData }
     = userSlice.actions;
 export const getLoadingState = (state: RootState) => state.user.isLoading;
 export const getAuthenticated = (state: RootState) => state.user.isAuthenticated;

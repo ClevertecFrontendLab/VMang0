@@ -1,34 +1,31 @@
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Layout } from 'antd';
 import { Header } from '@components/header';
-import { Footer } from '@components/footer';
 import { Sidebar } from '@components/sidebar';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch } from '@redux/configure-store';
-import { getLoadingState, setLoadingState } from '@redux/slices/userSlice';
 import { Loader } from '@components/loader';
+import { Blur } from '@components/blur';
+import classNames from 'classnames';
+import useLoadingState from '@hooks/useLoadingState';
 
 export const MainContent: FC = () => {
-    const dispatch = useDispatch<AppDispatch>();
-    const isLoadingAuth = useSelector(rootState => getLoadingState(rootState));
-
-    useEffect(() => {
-        const timeoutId = setTimeout(() => {
-            dispatch(setLoadingState(false));
-        }, 100);
-        return () => clearTimeout(timeoutId);
-    }, []);
-
+    const { isLoadingFeedback, isLoadingAuth } = useLoadingState();
+    const mainContentClasses = classNames('app', {
+        'app_fixed': isLoadingAuth || isLoadingFeedback
+    });
     return (
-        <Layout className='app'>
-            { isLoadingAuth && <Loader style={{ zIndex: '-100' }}/>}
-            <Sidebar />
-            <Layout className='app__layout'>
-                <Header />
-                <Outlet />
-                <Footer />
+        <div className='main_container'>
+            { (isLoadingAuth || isLoadingFeedback) && <Blur />}
+            { (isLoadingAuth || isLoadingFeedback) && <Loader /> }
+            <Layout className={mainContentClasses}>
+                <Sidebar />
+                <Layout className='app__layout'>
+                    <Header />
+                    <Layout className='app__content'>
+                        <Outlet />
+                    </Layout>
+                </Layout>
             </Layout>
-        </Layout>
+        </div>
     )
 }

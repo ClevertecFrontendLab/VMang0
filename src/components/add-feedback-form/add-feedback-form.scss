@@ -1,0 +1,33 @@
+.add_feedback_modal{
+    .text_area {
+        margin-top: 16px;
+        min-height: 46px;
+        resize: none;
+    }
+    .ant-modal-footer {
+        display: flex;
+        justify-content: flex-end;
+        padding: 10px 24px;
+    }
+}
+.ant-modal-mask {
+    backdrop-filter: blur(5px);
+    background: rgba(121, 156, 212, 0.1);
+}
+@media screen and (max-width: 575px) {
+    .ant-modal-mask {
+        background: rgba(121, 156, 212, 0.5);
+    }
+    .add_feedback_modal{
+        max-width: calc(100vw - 32px);
+        .ant-modal-header {
+            padding: 16px;
+        }
+        .ant-modal-body {
+            padding: 24px 16px;
+        }
+        .ant-modal-footer {
+            padding: 10px 16px;
+        }
+    }
+}

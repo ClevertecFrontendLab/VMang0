@@ -12,7 +12,7 @@ import {
     ERROR_CHECK_EMAIL_NOEXIST,
     SUCCESS_CHANGE_PASSWORD
 } from '@utils/constants/route-path/route-path';
-import axios, { axiosPrivate } from '../../utils/axios/axios';
+import axios from '../../utils/axios/axios';
 import { TokenType } from '@redux/types/types';
 
 export const checkEmail = createAsyncThunk<TokenType,
@@ -43,7 +43,7 @@ export const confirmEmail = createAsyncThunk<TokenType,
     'recovery/confirm-email',
     async ({ email, code}, { dispatch }) => {
         try {
-            const response = await axiosPrivate.post(CONFIRM_EMAIL_URL, { email, code });
+            const response = await axios.post(CONFIRM_EMAIL_URL, { email, code });
             dispatch(push(CHANGE_PASSWORD,
                 { result: 'Успешная проверка кода' }));
             return response.data;
@@ -60,7 +60,7 @@ export const changePassword = createAsyncThunk<TokenType,
     'recovery/change-password',
     async ({ password, confirmPassword}, { dispatch }) => {
         try {
-            const response = await axiosPrivate.post(
+            const response = await axios.post(
                 CHANGE_PASSWORD_URL,
                 { password, confirmPassword }
             );

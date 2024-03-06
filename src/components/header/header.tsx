@@ -1,40 +1,29 @@
-import { SettingOutlined } from '@ant-design/icons';
-import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint.js';
-import { Button, Col, Layout, Row, Typography } from 'antd';
-const { Title, Link } = Typography;
+import { Breadcrumb, Layout, Row } from 'antd';
 import { FC } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { FEEDBACKS, MAIN } from '@utils/constants/route-path/route-path';
 
 export const Header: FC = () => {
-    const { lg, md } = useBreakpoint();
-    const level = lg ? 1 : (md ? 3 : 4)
-
+    const { pathname } = useLocation();
     return (
         <div className='header_container'>
-            <Layout.Header title={'Header'}>
+            <Layout.Header>
                 <Row>
-                    <Col span={24}
-                         className='header_container__breadcrumb'>
-                        <Link>Главная</Link>
-                    </Col>
-                    <Row className='header_container__wrapper_header'>
-                        <Col lg={{ span: 21 }} md={{ span: 20 }}
-                             sm={{span: 20}} xs={{ span: 21 }}
-                             className='title'>
-                            <Title level={level}>
-                                Приветствуем тебя <span className='line_break' />
-                                в CleverFit — приложении, <br />
-                                которое поможет тебе добиться своей мечты!
-                            </Title>
-                        </Col>
-                        <Col lg={{ span: 3 }} md={{ span: 4 }}
-                             sm={{span: 3}} xs={{ span: 2 }} className='btn_settings_wrapper'>
-                            <Button icon={<SettingOutlined />}
-                                    className='btn_settings'
-                                    aria-label='go to settings'>
-                                Настройки
-                            </Button>
-                        </Col>
-                    </Row>
+                    <Breadcrumb>
+                        <Breadcrumb.Item>
+                            <Link to={MAIN}>
+                                Главная
+                            </Link>
+                        </Breadcrumb.Item>
+                        {
+                            pathname === FEEDBACKS &&
+                            <Breadcrumb.Item>
+                                <Link to={FEEDBACKS}>
+                                    Отзывы пользователей
+                                </Link>
+                            </Breadcrumb.Item>
+                        }
+                    </Breadcrumb>
                 </Row>
             </Layout.Header>
         </div>

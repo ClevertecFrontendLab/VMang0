@@ -2,8 +2,19 @@
     padding: 64px 85.5px;
     border-radius: 2px;
     width: 539px;
+    max-width: calc(100vw - 32px);
     box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
     background: $character-light-primary-inverse;
+    z-index: 1;
+    .ant-result-extra {
+        display: flex;
+        justify-content: space-between;
+    }
+    &_centered {
+        .ant-result-extra {
+            justify-content: center;
+        }
+    }
     &_specific {
         padding: 64px 32px 56px;
         .ant-result {
@@ -29,7 +40,6 @@
 }
 @media screen and (max-width: 575px) {
     .result {
-        width: 328px;
         padding: 32px 16px;
         &_specific {
             padding: 64px 32px 56px;

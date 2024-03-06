@@ -1,0 +1,40 @@
+.feedbacks_container {
+    flex: 0 0 100%;
+    &_list {
+        max-height: calc(100vh - 152px - 20px - 50px - 68px);
+        overflow-y: auto;
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+    &_btn_container {
+        height: 152px;
+        margin-top: 20px;
+        align-items: flex-end;
+        button:first-child {
+            margin-right: 8px;
+        }
+    }
+    &_centered {
+        display: flex;
+        align-items: center;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .feedbacks_container {
+        &_list {
+            max-height: calc(100vh - 50px - 210px);
+        }
+        &_btn_container {
+            height: auto;
+            margin-top: 48px;
+            button:first-child {
+                margin-right: 0;
+            }
+        }
+        &_centered {
+            align-items: start;
+        }
+    }
+}

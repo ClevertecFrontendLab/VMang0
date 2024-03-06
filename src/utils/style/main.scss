@@ -1,0 +1,16 @@
+.content_padding {
+    padding: 24px 24px 42px;
+    width: 100%;
+}
+.main_container {
+    position: relative;
+    max-width: 1440px;
+    height: auto;
+    min-height: 100vh;
+    margin: 0 auto;
+}
+@media screen and (max-width: 575px) {
+    .content_padding {
+        padding: 24px 16px 42px;
+    }
+}

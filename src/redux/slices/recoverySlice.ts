@@ -46,5 +46,9 @@ const recoverySlice = createSlice<RecoveryType, SliceCaseReducers<RecoveryType> 
             })
     }
 })
+
+export const passwordSelector = (state) => state.recoveryPassword.password;
+export const isLoadingSelector = (state)  => state.recoveryPassword.isLoading;
+
 export const { setPassword } = recoverySlice.actions;
 export default recoverySlice.reducer;

@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { MainContent } from './main-content/main-content';
 import { AuthenticatedRoute } from './authenticated/authenticated';
 import { UnauthenticatedRoute } from './unauthenticated/unauthenticated';
@@ -16,7 +16,7 @@ import {
     ERROR_CHANGE_PASSWORD,
     SUCCESS_CHANGE_PASSWORD,
     CONFIRM_EMAIL,
-    CHANGE_PASSWORD
+    CHANGE_PASSWORD, FEEDBACKS
 } from '@utils/constants/route-path/route-path';
 import { AuthContainer } from '@components/auth-container';
 import { ResultWindow } from '@components/result';
@@ -25,14 +25,17 @@ import { CodeForm } from '@components/code-form';
 import { RecoveryPasswordForm } from '@components/recovery-password-form';
 import { StatePrivateRoute } from './state-private-route/state-private-route';
 import { MainPage } from '@pages/main-page';
+import { FeedbacksPage } from '@pages/feedbacks-page';
+import { RedirectWithTokenCheck } from './token-check/token-check';
 
 export const Routes_: FC = () => (
     <Routes>
-        <Route exact path='/' element={<Navigate to={MAIN} />}/>
+        <Route exact path='/' element={<RedirectWithTokenCheck />}/>
 
         <Route element={<AuthenticatedRoute />} >
             <Route element={<MainContent />}>
                 <Route path={MAIN} element={<MainPage />} />
+                <Route path={FEEDBACKS} element={<FeedbacksPage />} />
             </Route>
         </Route>
 
@@ -45,25 +48,29 @@ export const Routes_: FC = () => (
                 <Route path={CHANGE_PASSWORD} element={<RecoveryPasswordForm />}/>
 
                 <Route path={ERROR_LOGIN}
-                       element={ <ResultWindow data={result[0]} /> } />
+                       element={ <ResultWindow data={result[0]} btnWidth='100%'/> } />
                 <Route path={SUCCESS_REGISTRATION}
-                       element={ <ResultWindow data={result[1]} /> } />
+                       element={ <ResultWindow data={result[1]} btnWidth='100%' /> } />
                 <Route path={ERROR_REG_USER_EXIST}
-                       element={ <ResultWindow data={result[2]} /> } />
+                       element={ <ResultWindow data={result[2]} btnWidth='100%' /> } />
                 <Route path={ERROR_REGISTRATION}
-                       element={ <ResultWindow data={result[3]} /> } />
+                       element={ <ResultWindow data={result[3]} btnWidth='100%' /> } />
                 <Route path={ERROR_CHECK_EMAIL_NOEXIST}
                        element={ <ResultWindow data={result[4]}
-                                               style={'result_specific'} /> } />
-                <Route path={ERROR_CHANGE_PASSWORD}
-                       element={ <ResultWindow data={result[6]}
-                                               style={'result_specific_padding'} /> } />
-                <Route path={SUCCESS_CHANGE_PASSWORD}
-                       element={ <ResultWindow data={result[7]}
-                                               style={'result_specific_padding'} /> } />
+                                               centered={true}
+                                               style='result_specific result_centered' /> } />
                 <Route path={ERROR_CHECK_EMAIL}
                        element={ <ResultWindow data={result[5]}
-                                               style={'result_specific'} /> } />
+                                               btnWidth='100%'
+                                               style='result_specific result_centered' /> } />
+                <Route path={ERROR_CHANGE_PASSWORD}
+                       element={ <ResultWindow data={result[6]}
+                                               btnWidth='100%'
+                                               style='result_specific_padding' /> } />
+                <Route path={SUCCESS_CHANGE_PASSWORD}
+                       element={ <ResultWindow data={result[7]}
+                                               btnWidth='100%'
+                                               style='result_specific_padding' /> } />
             </Route>
         </Route>
     </Routes>

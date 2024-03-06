@@ -34,8 +34,14 @@ h1 {
     font-weight: 700;
 }
 h3, h4 {
-    font-family: 'Inter Medium', sans-serif;
+    font-family: "Inter Medium", sans-serif;
     font-weight: 500;
+}
+h6 {
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: $character-light-title-85;
 }
 h1,
 h2,
@@ -72,4 +78,14 @@ html, body {
 #root {
     height: 100%;
     overflow-y: auto;
+}
+nav, ol, li, ul, a, h1, h2, h3, h4, h5, h6, p, span,
+h1.ant-typography,
+h2.ant-typography,
+h3.ant-typography,
+h4.ant-typography,
+h5.ant-typography,
+h6.ant-typography{
+    line-height: 130%;
+    margin-bottom: 0;
 }

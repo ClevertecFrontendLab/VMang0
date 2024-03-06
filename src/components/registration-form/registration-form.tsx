@@ -1,19 +1,20 @@
 import { FC, useEffect } from 'react';
 import { Button, Form, Input } from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone, GooglePlusOutlined } from '@ant-design/icons';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { AppDispatch } from '@redux/configure-store';
 import { registration } from '@redux/actions/registration';
 import { ERROR_REGISTRATION } from '@utils/constants/route-path/route-path';
 import { setRegistrationData } from '@redux/slices/userSlice';
+import useLocationState from '@hooks/useLocationState';
+import useAuthState from '@hooks/useAuthState';
 const { useForm } = Form;
 
 export const RegistrationForm: FC = () => {
     const dispatch = useDispatch<AppDispatch>();
+    const { previousPath } = useLocationState();
+    const { registrationData } = useAuthState();
     const [form] = useForm();
-    const previosRouter = useSelector((state) =>
-        state.router.previousLocations[1]?.location?.pathname);
-    const registrationData = useSelector( state => state.user.registrationData)
 
     const handleRegistration = async () => {
         const { email, password } = form.getFieldsValue();
@@ -28,7 +29,7 @@ export const RegistrationForm: FC = () => {
     }
 
     useEffect(() => {
-        if (previosRouter === ERROR_REGISTRATION && registrationData.password !== '') {
+        if (previousPath === ERROR_REGISTRATION && registrationData.password !== '') {
             form.setFieldsValue({
                 ...registrationData,
                 confirmPassword: registrationData.password

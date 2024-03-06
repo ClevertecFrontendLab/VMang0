@@ -3,6 +3,7 @@
     padding: 64px 32px 56px;
     box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
     background: $character-light-primary-inverse;
+    z-index: 1;
     .ant-typography {
         display: block;
         margin-top: 24px;

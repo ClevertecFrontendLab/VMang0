@@ -3,6 +3,7 @@ export const LOGIN = '/auth';
 export const REGISTRATION = '/auth/registration';
 export const CONFIRM_EMAIL = '/auth/confirm-email';
 export const CHANGE_PASSWORD = '/auth/change-password';
+export const FEEDBACKS = '/feedbacks';
 
 export const ERROR_LOGIN = '/result/error-login';
 export const SUCCESS_REGISTRATION = '/result/success';

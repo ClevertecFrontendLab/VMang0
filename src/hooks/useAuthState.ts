@@ -1,9 +1,9 @@
 import { useSelector } from 'react-redux';
-import { getAuthenticated } from '@redux/slices/userSlice';
+import { isAuthenticatedSelector, registrationDataSelector } from '@redux/slices/userSlice';
 
 const useAuthState = () => {
-    const isAuthenticated = useSelector(rootState => getAuthenticated(rootState));
-    const registrationData = useSelector( state => state.user.registrationData);
+    const isAuthenticated = useSelector(isAuthenticatedSelector);
+    const registrationData = useSelector(registrationDataSelector);
     return {
         isAuthenticated,
         registrationData

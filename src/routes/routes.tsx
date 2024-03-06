@@ -48,29 +48,29 @@ export const Routes_: FC = () => (
                 <Route path={CHANGE_PASSWORD} element={<RecoveryPasswordForm />}/>
 
                 <Route path={ERROR_LOGIN}
-                       element={ <ResultWindow data={result[0]} btnWidth={'100%'}/> } />
+                       element={ <ResultWindow data={result[0]} btnWidth='100%'/> } />
                 <Route path={SUCCESS_REGISTRATION}
-                       element={ <ResultWindow data={result[1]} btnWidth={'100%'} /> } />
+                       element={ <ResultWindow data={result[1]} btnWidth='100%' /> } />
                 <Route path={ERROR_REG_USER_EXIST}
-                       element={ <ResultWindow data={result[2]} btnWidth={'100%'} /> } />
+                       element={ <ResultWindow data={result[2]} btnWidth='100%' /> } />
                 <Route path={ERROR_REGISTRATION}
-                       element={ <ResultWindow data={result[3]} btnWidth={'100%'} /> } />
+                       element={ <ResultWindow data={result[3]} btnWidth='100%' /> } />
                 <Route path={ERROR_CHECK_EMAIL_NOEXIST}
                        element={ <ResultWindow data={result[4]}
                                                centered={true}
-                                               style={'result_specific result_centered'} /> } />
+                                               style='result_specific result_centered' /> } />
                 <Route path={ERROR_CHECK_EMAIL}
                        element={ <ResultWindow data={result[5]}
-                                               btnWidth={'100%'}
-                                               style={'result_specific result_centered'} /> } />
+                                               btnWidth='100%'
+                                               style='result_specific result_centered' /> } />
                 <Route path={ERROR_CHANGE_PASSWORD}
                        element={ <ResultWindow data={result[6]}
-                                               btnWidth={'100%'}
-                                               style={'result_specific_padding'} /> } />
+                                               btnWidth='100%'
+                                               style='result_specific_padding' /> } />
                 <Route path={SUCCESS_CHANGE_PASSWORD}
                        element={ <ResultWindow data={result[7]}
-                                               btnWidth={'100%'}
-                                               style={'result_specific_padding'} /> } />
+                                               btnWidth='100%'
+                                               style='result_specific_padding' /> } />
             </Route>
         </Route>
     </Routes>

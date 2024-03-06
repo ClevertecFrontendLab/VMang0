@@ -26,7 +26,7 @@ export const ButtonContainer = ({ type, name, ...props }) => (
 
 export const ModalResultContainer = ({ open, data, handleClickOk, ...props }) => (
     <Modal
-        width={'auto'}
+        width='auto'
         zIndex={100}
         bodyStyle={{ padding: 0 }}
         centered

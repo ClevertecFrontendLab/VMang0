@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '@redux/configure-store';
 import { addFeedback } from '@redux/actions/feedback';
 import './add-feedback-form.scss';
+import { isAddSuccessSelector } from '@redux/slices/feedbackSlice';
 
 type Props = {
     isModalOpen: boolean,
@@ -17,7 +18,7 @@ export const AddFeedbackForm: FC<Props> = ({ isModalOpen, handleModal }) => {
     const dispatch = useDispatch<AppDispatch>();
     const [message, setMessage] = useState<string>('');
     const [rating, setRating] = useState<number>(0);
-    const isAddSuccess = useSelector((state) => state.feedback.isAddSuccess);
+    const isAddSuccess = useSelector(isAddSuccessSelector);
 
     useEffect(() => {
         if (isAddSuccess) {
@@ -50,7 +51,7 @@ export const AddFeedbackForm: FC<Props> = ({ isModalOpen, handleModal }) => {
             }>
             <CustomRate defaultValue={4}
                         size={20}
-                        height={'24px'}
+                        height='24px'
                         value={rating}
                         onChange={(e) => setRating(e)}
                         character={({ value, index }) => {

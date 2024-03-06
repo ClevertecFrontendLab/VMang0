@@ -13,18 +13,24 @@ import { modalResult } from '@utils/data/result/result';
 import { ModalResultContainer } from '@utils/style/ant/custom-containers';
 import { NoFeedback } from '@components/no-feedback-form';
 import classNames from 'classnames';
-import { setIsGetAllError } from '@redux/slices/feedbackSlice';
+import {
+    feedbacksSelector,
+    isAddErrorSelector,
+    isGetAllErrorSelector,
+    setIsGetAllError
+} from '@redux/slices/feedbackSlice';
+import { isAddSuccessSelector } from '@redux/slices/feedbackSlice'
 
 export const FeedbacksPage = () => {
-    const isGetAllError = useSelector((state) => state.feedback.isGetAllError);
-    const isAddError = useSelector((state) => state.feedback.isAddError);
-    const isAddSuccess = useSelector((state) => state.feedback.isAddSuccess);
-    const feedbacks = useSelector((state) => state.feedback.feedbacks);
     const [showAll, setShowAll] = useState<boolean>(false);
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
     const [isErrorModal, setIsErrorModal] = useState<boolean>(false);
     const [isSuccessModal, setIsSuccessModal] = useState<boolean>(false);
     const [isErrorGetAllModal, setErrorGetAllModal] = useState<boolean>(false);
+    const isAddSuccess = useSelector(isAddSuccessSelector);
+    const isAddError = useSelector(isAddErrorSelector);
+    const isGetAllError = useSelector(isGetAllErrorSelector);
+    const feedbacks = useSelector(feedbacksSelector);
     const dispatch = useDispatch<AppDispatch>();
     const { previousPath } = useLocationState();
     const { xs } = useBreakpoint();
@@ -131,11 +137,11 @@ export const FeedbacksPage = () => {
                                   handleClickOk={async () => {
                                       setIsSuccessModal(false);
                                   }}
-                                  btnWidth={'100%'}/>
+                                  btnWidth='100%'/>
             <ModalResultContainer open={isErrorModal}
                                   data={modalResult[1]}
                                   handleClickOk={handleWriteFeedback}
-                                  btnWidth={'49%'}
+                                  btnWidth='49%'
                                   handleClickCancel={() => {
                                       setIsErrorModal(false)
                                   }}/>
@@ -145,7 +151,7 @@ export const FeedbacksPage = () => {
                                       setErrorGetAllModal(false)
                                       dispatch(setIsGetAllError())
                                   }}
-                                  style={'result_specific result_centered'}/>
+                                  style='result_specific result_centered' />
         </div>
     );
 };

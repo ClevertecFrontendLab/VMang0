@@ -18,16 +18,16 @@ export type RecoveryType = {
 }
 export type FeedbacksType = {
     isLoading: boolean,
-    feedbacks?: Array<FeedbackType> | null,
     isGetAllError: boolean,
     isAddError: boolean,
-    isAddSuccess: boolean
+    isAddSuccess: boolean,
+    feedbacks?: Array<FeedbackType> | null
 }
 export type FeedbackType = {
     id: string,
+    rating: number,
+    createdAt: string,
     fullName?: string,
     imageSrc?: string,
-    message?: string,
-    rating: number,
-    createdAt: string
+    message?: string
 }

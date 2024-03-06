@@ -1,7 +1,6 @@
 import { RecoveryType } from '@redux/types/types';
 import { createSlice, PayloadAction, SliceCaseReducers } from '@reduxjs/toolkit';
 import { changePassword, checkEmail, confirmEmail } from '@redux/actions/password-recovery';
-import { RootState } from '@redux/configure-store';
 
 const initialState: RecoveryType = {
     isLoading: false,
@@ -47,6 +46,9 @@ const recoverySlice = createSlice<RecoveryType, SliceCaseReducers<RecoveryType> 
             })
     }
 })
+
+export const passwordSelector = (state) => state.recoveryPassword.password;
+export const isLoadingSelector = (state)  => state.recoveryPassword.isLoading;
+
 export const { setPassword } = recoverySlice.actions;
-export const getLoadingState = (state: RootState) => state.recoveryPassword.isLoading;
 export default recoverySlice.reducer;

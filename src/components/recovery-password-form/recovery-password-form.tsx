@@ -5,14 +5,14 @@ import { ERROR_CHANGE_PASSWORD } from '@utils/constants/route-path/route-path';
 import { Button, Form, Typography, Input } from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import { changePassword } from '@redux/actions/password-recovery';
-import { setPassword } from '@redux/slices/recoverySlice';
+import { passwordSelector, setPassword } from '@redux/slices/recoverySlice';
 import classNames from 'classnames';
 import useLoadingState from '@hooks/useLoadingState';
 import useLocationState from '@hooks/useLocationState';
 const { useForm } = Form;
 
 export const RecoveryPasswordForm: FC = () => {
-    const password = useSelector(state => state.recoveryPassword.password);
+    const password = useSelector(passwordSelector);
     const { isLoadingRecoveryPass } = useLoadingState();
     const { previousPath } = useLocationState();
     const dispatch = useDispatch<AppDispatch>();

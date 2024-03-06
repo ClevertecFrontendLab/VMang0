@@ -11,13 +11,13 @@ type Props = {
     data: {
         status: string,
         mainTitle: string,
-        title?: string,
-        buttons: Array<ButtonType>
-    }
-    style?: string,
+        buttons: Array<ButtonType>,
+        title?: string
+    },
     handleClickOk?: () => void | undefined,
     handleClickCancel?: () => void,
     btnWidth?: string,
+    style?: string
 }
 
 type ButtonType = {

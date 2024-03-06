@@ -46,7 +46,7 @@ export const CodeForm: FC = () => {
                                        value={code}
                                        length={6}
                                        autoFocus={false}
-                                       validChars={'0-9'}
+                                       validChars='0-9'
                                        onChange={(e) => setCode(e)}
                                        onComplete={handleComplete}
                                        inputProps={{ 'data-test-id': 'verification-input' }}

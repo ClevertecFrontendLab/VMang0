@@ -1,7 +1,6 @@
 import { FeedbacksType } from '@redux/types/types';
 import { createSlice, SliceCaseReducers } from '@reduxjs/toolkit';
 import { addFeedback, getFeedbacks } from '@redux/actions/feedback';
-import { RootState } from '@redux/configure-store';
 
 const initialState: FeedbacksType = {
     isLoading: false,
@@ -53,7 +52,11 @@ const feedbackSlice = createSlice<FeedbacksType, SliceCaseReducers<FeedbacksType
             })
     }
 })
+export const isAddSuccessSelector = (state) => state.feedback.isAddSuccess;
+export const isAddErrorSelector = (state) => state.feedback.isAddError;
+export const isGetAllErrorSelector = (state) => state.feedback.isGetAllError;
+export const feedbacksSelector = (state) => state.feedback.feedbacks;
+export const isLoadingSelector = (state) => state.feedback.isLoading;
 
 export const { setIsGetAllError } = feedbackSlice.reducer;
-export const getLoadingState = (state: RootState) => state.feedback.isLoading;
 export default feedbackSlice.reducer;

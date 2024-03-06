@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction, SliceCaseReducers } from '@reduxjs/toolkit';
 import { RegistrationDataType, UserType } from '@redux/types/types';
 import { login } from '@redux/actions/login';
-import { RootState } from '@redux/configure-store';
 import { registration } from '@redux/actions/registration';
 
 const initialState: UserType = {
@@ -65,8 +64,10 @@ const userSlice = createSlice<UserType, SliceCaseReducers<UserType>>({
     }
 })
 
+export const registrationDataSelector = (state) => state.user.registrationData;
+export const isAuthenticatedSelector = (state)  => state.user.isAuthenticated;
+export const isLoadingSelector = (state)  => state.user.isLoading;
+
 export const { setErrorState, userLogout, setRegistrationData, setLoadingState, setAuthData }
     = userSlice.actions;
-export const getLoadingState = (state: RootState) => state.user.isLoading;
-export const getAuthenticated = (state: RootState) => state.user.isAuthenticated;
 export default userSlice.reducer;

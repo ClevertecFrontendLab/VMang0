@@ -6,11 +6,11 @@ import { CustomRate } from '@utils/style/ant/custom';
 
 type Props = {
     feedback: {
-        fullName?: string,
         imageSrc: any,
-        message?: string,
         rating: number,
-        createdAt: string
+        createdAt: string,
+        fullName?: string,
+        message?: string,
     }
 }
 
@@ -38,7 +38,7 @@ export const Feedback: FC<Props> = ({ feedback }) => {
                         <Col span={24} className='flex_column_row'>
                             <CustomRate disabled
                                         defaultValue={rating}
-                                        height={'16px'}
+                                        height='16px'
                                         character={({ value, index }) => {
                                 return value && index! < value ? <StarFilled /> : <StarOutlined />
                             }}  />

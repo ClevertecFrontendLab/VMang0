@@ -12,8 +12,10 @@ $REGISTRATION_MOBILE: 564px;
     padding: 64px 85.5px;
     box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
     background: $character-light-primary-inverse;
+    z-index: 111;
     &_fixed {
         position: fixed;
+        z-index: 0;
     }
     img {
         width: 309px;

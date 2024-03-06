@@ -1,14 +1,21 @@
 .app {
     max-width: 1440px;
-    min-height: 100%;
+    height: auto;
+    min-height: 100vh;
     margin: 0 auto;
     background: no-repeat fixed center/cover url('../../utils/image/main_page_light.png');
     &__layout {
-        display: flex;
-        flex-direction: column;
+        background: transparent;
+    }
+    &__content {
+        flex: 1;
+        align-items: end;
         background: transparent;
     }
     &__unauth {
         background: no-repeat fixed center/cover url('../../utils/image/unauth_pages_light.png');
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }

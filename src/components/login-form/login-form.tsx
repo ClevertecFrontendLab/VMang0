@@ -1,27 +1,24 @@
 import { FC, useCallback, useEffect, useState } from 'react';
 import { Button, Checkbox, Form, Input } from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone, GooglePlusOutlined } from '@ant-design/icons';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { AppDispatch } from '@redux/configure-store';
 import { login } from '@redux/actions/login';
 import { checkEmail } from '@redux/actions/password-recovery';
 import { ERROR_CHECK_EMAIL } from '@utils/constants/route-path/route-path';
-import { setRegistrationData } from '@redux/slices/userSlice';
+import { setLoadingState, setRegistrationData } from '@redux/slices/userSlice';
+import { BASE_URL } from '@utils/constants/urls/urls';
+import useAuthState from '@hooks/useAuthState';
+import useLocationState from '@hooks/useLocationState';
 const { useForm } = Form;
 
 export const LoginForm: FC = () => {
-    const [form] = useForm();
-    const dispatch = useDispatch<AppDispatch>();
-    const [email, setEmail] = useState<string>('');
     const [isForgotDisable, setIsForgotDisable] = useState<boolean>(false);
-    const registrationData = useSelector( state => state.user.registrationData);
-    const previosRouter = useSelector((state) =>
-        state.router.previousLocations[1]?.location?.pathname);
-
-    const handleLogin = async () => {
-        const { email, password, isRemember } = form.getFieldsValue();
-        await dispatch(login({ email, password, isRemember }));
-    };
+    const [email, setEmail] = useState<string>('');
+    const dispatch = useDispatch<AppDispatch>();
+    const { registrationData } = useAuthState();
+    const { previousPath } = useLocationState();
+    const [form] = useForm();
 
     const successHandleWithValidateEmail = useCallback((successHandle: () => void) => {
         form.validateFields(['email'])
@@ -29,12 +26,21 @@ export const LoginForm: FC = () => {
             .catch(() => setIsForgotDisable(true));
     }, [form])
 
+    const handleLogin = async () => {
+        const { email, password, isRemember } = form.getFieldsValue();
+        await dispatch(login({ email, password, isRemember }));
+    };
+
     const handleForgotPassword = () => {
         successHandleWithValidateEmail(() => {
             dispatch(setRegistrationData(form.getFieldsValue()));
             dispatch(checkEmail({ email }))
         })
     }
+    const handleGoogleLogin = () => {
+        dispatch(setLoadingState(true));
+        window.location.replace(`${BASE_URL}/auth/google`);
+    };
 
     useEffect(() => {
         if (form.isFieldTouched('email')) {
@@ -44,7 +50,7 @@ export const LoginForm: FC = () => {
     }, [form, successHandleWithValidateEmail, email]);
 
     useEffect(() => {
-        if (previosRouter === ERROR_CHECK_EMAIL && registrationData.email !== '') {
+        if (previousPath === ERROR_CHECK_EMAIL && registrationData.email !== '') {
             form.setFieldsValue({
                 email: registrationData.email
             });
@@ -57,7 +63,7 @@ export const LoginForm: FC = () => {
             name='login_form'
             form={form}
             className='auth_form auth_form_login'
-            initialValues={{ isRemember: true }}
+            initialValues={{ isRemember: false }}
             onFinish={handleLogin}
         >
             <Form.Item
@@ -128,7 +134,8 @@ export const LoginForm: FC = () => {
                 )}
             </Form.Item>
             <Button className='auth_form_google'
-                    icon={<GooglePlusOutlined />}>
+                    icon={<GooglePlusOutlined />}
+                    onClick={handleGoogleLogin}>
                 Войти через Google
             </Button>
         </Form>

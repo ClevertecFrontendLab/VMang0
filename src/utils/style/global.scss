@@ -1,13 +1,15 @@
-@import './default';
 @import './variables';
+@import './default';
 
 @import '../../components/main/app.scss';
+@import './main.scss';
 @import '../../components/sidebar/menu-list/menu-list.scss';
 @import '../../components/sidebar/logo/logo.scss';
 @import '../../components/sidebar/sidebar.scss';
 @import '../../components/sidebar/exit-btn/exit-btn.scss';
 @import '../../components/sidebar/menu-toggle/menu-toggle.scss';
 @import '../../components/header/header.scss';
+@import '../../pages/main-page/welcome-header.scss';
 @import '../../pages/main-page/main-page.scss';
 @import '../../components/footer/footer.scss';
 @import '../../components/download-card/download-card.scss';
@@ -20,3 +22,6 @@
 @import '../../components/result/result.scss';
 @import '../../components/recovery-password-form/recovery-password-form.scss';
 @import '../../components/code-form/code-form.scss';
+@import '../../pages/feedbacks-page/feedbacks-page.scss';
+@import '../../components/feedback-form/feedback.scss';
+@import '../../components/no-feedback-form/no-feedback.scss';

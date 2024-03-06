@@ -1,23 +1,29 @@
 import { FC } from 'react';
-import { useSelector } from 'react-redux';
 import { Outlet, Navigate  } from 'react-router-dom';
 import { MAIN } from '@utils/constants/route-path/route-path';
 import { Layout } from 'antd';
 import { Blur } from '@components/blur/blur';
-import { getAuthenticated, getLoadingState } from '@redux/slices/userSlice';
+import { Loader } from '@components/loader';
+import classNames from 'classnames';
+import useLoadingState from '@hooks/useLoadingState';
+import useAuthState from '@hooks/useAuthState';
 
 export const UnauthenticatedRoute: FC = () => {
-    const isAuthenticated = useSelector(rootState => getAuthenticated(rootState));
-    const isLoadingAuth = useSelector(rootState => getLoadingState(rootState));
-    const isLoadingRecoveryPass = useSelector(state => state.recoveryPassword.isLoading);
+    const { isLoadingAuth, isLoadingRecoveryPass } = useLoadingState();
+    const { isAuthenticated } = useAuthState();
+    const blurClasses = classNames('blur_default', {
+        'blur_disabled': isLoadingAuth || isLoadingRecoveryPass,
+    });
     return !isAuthenticated
         ? (
-            <Layout className='app app__unauth'>
-                <Blur styleProp={`${isLoadingAuth || isLoadingRecoveryPass
-                    ? 'blur_disabled' : ''}`}>
+            <div className='main_container'>
+                { (isLoadingAuth || isLoadingRecoveryPass) && <Blur />}
+                { (isLoadingAuth || isLoadingRecoveryPass) && <Loader /> }
+                <Layout className='app app__unauth'>
+                    <Blur styleProp={blurClasses} />
                     <Outlet />
-                </Blur>
-            </Layout>
+                </Layout>
+            </div>
         )
         : <Navigate to={MAIN} replace />;
 };
